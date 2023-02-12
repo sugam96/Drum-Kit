@@ -1,4 +1,5 @@
 document.addEventListener("keydown", function (event) {
+    clickAnimations(event.key);
     soundPlayer(event.key);
 });
 var buttons = document.querySelectorAll(".drum");
@@ -8,13 +9,9 @@ for (let index = 0; index < numberOfButtons; index++) {
 }
 
 function clickHandler() {
-    this.style.color = "#FFF";
     var button = this.innerHTML;
+    clickAnimations(button);
     soundPlayer(button)
-
-    setTimeout(() => {
-        this.style.color = "#DA0463";
-    }, 1000);
 }
 
 function soundPlayer(key){
@@ -50,4 +47,14 @@ function soundPlayer(key){
         default:
             break;
     }
+}
+
+function clickAnimations(key) {
+    var varClass = "."+key;
+    var activeButton = document.querySelector(varClass);
+    activeButton.classList.add("pressed");
+    setTimeout(() => {
+        activeButton.classList.remove("pressed");
+    }, 100);
+
 }
