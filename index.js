@@ -1,3 +1,6 @@
+document.addEventListener("keydown", function (event) {
+    soundPlayer(event.key);
+});
 var buttons = document.querySelectorAll(".drum");
 var numberOfButtons = document.querySelectorAll(".drum").length;
 for (let index = 0; index < numberOfButtons; index++) {
@@ -7,8 +10,15 @@ for (let index = 0; index < numberOfButtons; index++) {
 function clickHandler() {
     this.style.color = "#FFF";
     var button = this.innerHTML;
+    soundPlayer(button)
 
-    switch (button) {
+    setTimeout(() => {
+        this.style.color = "#DA0463";
+    }, 1000);
+}
+
+function soundPlayer(key){
+    switch (key){
         case 'w':
             var crash = new Audio("sounds/crash.mp3");
             crash.play();
@@ -40,9 +50,4 @@ function clickHandler() {
         default:
             break;
     }
-
-    setTimeout(() => {
-        this.style.color = "#DA0463";
-    }, 1000);
-
 }
